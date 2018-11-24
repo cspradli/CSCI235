@@ -1,4 +1,5 @@
 //Modified by Caleb Spradlin
+//SO FAR WORKS BUT DOES NOT GO INTO SUBDIRECTORIES
 #include <dirent.h>
 #include <errno.h>
 #include <stdio.h>
