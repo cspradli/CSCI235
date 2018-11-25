@@ -44,15 +44,12 @@ void dir_print(char *base_path){
                     }
                 }
             }
-            // Construct new path from our base path
+            // Construct new path from base path
             strcpy(curPath, base_path);
             strcat(curPath, "/");
             strcat(curPath, dp->d_name);
-
             dir_print(curPath);
         }
-
     }
-
     closedir(dir);
 }
