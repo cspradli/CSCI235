@@ -1,10 +1,8 @@
 #include <dirent.h>
-#include <errno.h>
 #include <stdio.h>
 #include <string.h>
 #include <sys/types.h>
 #include <sys/stat.h>
-#include <unistd.h>
 
 void dir_print(char *) ;
 int largestFile = 0;
@@ -28,19 +26,18 @@ void dir_print(char *base_path){
     struct dirent *dp;
     DIR *dir = opendir(base_path);
 
+    // Unable to open directory
     if (!dir){
         return;
     }
 
     while((dp = readdir(dir)) != NULL){
-
         struct stat fileStat;
-
         if (strcmp(dp->d_name, ".") != 0 && strcmp(dp->d_name, "..") != 0){
-            //printf("%s\n", dp->d_name);
-
             if (!stat(curPath, &fileStat)) {
                 if (S_ISREG(fileStat.st_mode)){
+                    
+                    // If current file is larger than largest prev, copy current to largest
                     if (fileStat.st_size > largestFile){
                         largestFile = fileStat.st_size;
                         strcpy(fileName, curPath);
