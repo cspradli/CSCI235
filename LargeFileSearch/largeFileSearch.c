@@ -45,6 +45,7 @@ int dir_print(char *path_name) {
             largestFile = fileStat.st_size;
             strcpy(fileName, bigFileNameBuffer);
         }
+        
         //printf("%s:  ", bigFileNameBuffer) ;
         //printf("File size:    %ld bytes\n", (long) fileStat.st_size);
 	    }

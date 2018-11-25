@@ -6,27 +6,30 @@
 #include <sys/stat.h>
 #include <unistd.h>
 
-int dir_print(char *) ;
+void dir_print(char *) ;
 int largestFile = 0;
 char fileName[8192] = "";
 
 // If there is an argument, pass it on to dir_print; otherwise, exit
 int main(int argc, char *argv[]) {
   if (argc > 1) {
-    return dir_print(argv[1]) ;
+    dir_print(argv[1]) ;
+    printf("%s:   ", fileName);
+    printf("File size:    %d bytes\n", largestFile);
+    return 0;
   } else {
     fprintf(stderr, "Usage: %s file-name\n", argv[0]) ;
     return 235 ;
   }
 }
 
-int dir_print(char *base_path){
+void dir_print(char *base_path){
     char curPath[8192];
     struct dirent *dp;
     DIR *dir = opendir(base_path);
 
     if (!dir){
-        return 0;
+        return;
     }
 
     while((dp = readdir(dir)) != NULL){
@@ -53,9 +56,6 @@ int dir_print(char *base_path){
         }
 
     }
-    printf("%s:   ", fileName);
-    printf("File size:    %d bytes\n", largestFile);
-    closedir(dir);
-    return 0;
-}
 
+    closedir(dir);
+}
