@@ -20,13 +20,13 @@ int main(int argc, char *argv[]) {
   }
 }
 
-void dir_print(char *base_path){
-    char curPath[8196];
+int dir_print(char *base_path){
+    char curPath[8192];
     struct dirent *dp;
-    DIR *dir = opendir(basePath);
+    DIR *dir = opendir(base_path);
 
     if (!dir){
-        return;
+        return 0;
     }
 
     while((dp = readdir(dir)) != NULL){
@@ -34,7 +34,28 @@ void dir_print(char *base_path){
         struct stat fileStat;
 
         if (strcmp(dp->d_name, ".") != 0 && strcmp(dp->d_name, "..") != 0){
-            if (S_
+            //printf("%s\n", dp->d_name);
+
+            if (!stat(curPath, &fileStat)) {
+                if (S_ISREG(fileStat.st_mode)){
+                    if (fileStat.st_size > largestFile){
+                        largestFile = fileStat.st_size;
+                        strcpy(fileName, curPath);
+                    }
+                }
+            }
+            // Construct new path from our base path
+            strcpy(curPath, base_path);
+            strcat(curPath, "/");
+            strcat(curPath, dp->d_name);
+
+            dir_print(curPath);
         }
+
     }
+    printf("%s:   ", fileName);
+    printf("File size:    %d bytes\n", largestFile);
+    closedir(dir);
+    return 0;
 }
+
