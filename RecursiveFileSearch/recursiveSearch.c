@@ -26,7 +26,6 @@ void dir_print(char *base_path){
     struct dirent *dp;
     DIR *dir = opendir(base_path);
 
-    // Unable to open directory
     if (!dir){
         return;
     }
