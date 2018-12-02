@@ -26,7 +26,7 @@ int main(int argv, char *argc[]) {
     printf("%02d/%02d/%04d\n", arr[i].month, arr[i].day, arr[i].year) ;
     i++;
   }
-  
+
   printf("\n");
 
   qsort(arr, i+1, sizeof(Dates), compare);
@@ -37,6 +37,4 @@ int main(int argv, char *argc[]) {
   return 0 ;
 }
 
-// Some would prefer the test
-//  scanf("%s", dataStuff) != EOF
 
