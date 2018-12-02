@@ -2,10 +2,6 @@ CC = gcc
 
 CFLAGS = -std=c99 -Wpedantic -Og -g
 
-all:       cassign1
+all:       cassignplus
 
-print_all:    cassign1.o
-	gcc $(CFLAGS) -o cassign cassign.o
-
-clean:
-	rm -f cassign *.o *~
+print_all:    cassignplus.o
