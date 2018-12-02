@@ -15,6 +15,8 @@ int main(int argv, char *argc[]) {
   Dates arr[235];
   int month, day, year ;
   int i = 0;
+  //REMOVE
+  printf("Before sorting: \n");
 
   while (scanf("%d/%d/%d", &month, &day, &year) == 3) {
     arr[i].month = month;
@@ -22,7 +24,6 @@ int main(int argv, char *argc[]) {
     arr[i].year = year;
 
     //REMOVE- test print to make sure std input is working
-    printf("Before sorting: \n");
     printf("%02d/%02d/%04d\n", arr[i].month, arr[i].day, arr[i].year) ;
     i++;
   }
