@@ -7,6 +7,8 @@ typedef struct {
 
 int compare(const void *aptr, const void *bptr){
     int a = ((Dates *)aptr)->year, b = ((Dates *)bptr)->year;
+    int c = ((Dates *)aptr)->month, d = ((Dates *)bptr)->month;
+    if (a == b){ return (c > d) - (c < d); }
     return (a > b) - (a < b);
 }
 
@@ -15,21 +17,14 @@ int main(int argv, char *argc[]) {
   Dates arr[235];
   int month, day, year ;
   int i = 0;
-  //REMOVE
-  printf("Before sorting: \n");
 
   while (scanf("%d/%d/%d", &month, &day, &year) == 3) {
     arr[i].month = month;
     arr[i].day = day;
     arr[i].year = year;
-
-    //REMOVE- test print to make sure std input is working
-    printf("%02d/%02d/%04d\n", arr[i].month, arr[i].day, arr[i].year) ;
     i++;
   }
-
-  printf("\n");
-
+  
   qsort(arr, i+1, sizeof(Dates), compare);
 
   for (int j = 0; j < i; j++){
